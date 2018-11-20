@@ -16,4 +16,4 @@
  			( Node 8.2+ 版本提供的 npx 命令，可以运行在初始安装的 webpack 包(package)的 webpack 二进制文件（./node_modules/.bin/webpack）：
 				npm5.2.0以上才能用npx  更新命令 sudo npm install npm@latest -g )
 			npm5 会自动添加 webpack-lock.json 文件
-3.
+3. plugin： html-webpack-plugin   clean-webpack-plugin

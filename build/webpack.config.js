@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new CleanWebpackPlugin(['dist'], {
-      root: path.resolve(__dirname, "../"),
+      root: path.resolve(__dirname, "../"),  // 这个地方是../ 不是../dist  和output.path保持一致
       verbose:  true
     }),
     new HtmlWebapckPlugin({
