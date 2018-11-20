@@ -9,10 +9,11 @@
 1. 建立工程 mkdir webpack-project && cd webpack-project
 	    npm init -y 快速生成package.json
 2. 安装（在工程里安装webpack 不要全局安装）
-	npm install --save-dev webpack
-	--如果装的是webpack4.0 需要再安装cli（npm i --save-dev webpack-cli ）
-   git init > touch .gitignore > 创建远端仓库不要添加readme > 在本地 git remote add origin https://github.com/Panamer/webpack-restart.git > git push -u origin master > 本地仓库分支关联远端分支成功 >
-git add . > git commit -m "" > git push > 工程创建成功
- ( Node 8.2+ 版本提供的 npx 命令，可以运行在初始安装的 webpack 包(package)的 webpack 二进制文件（./node_modules/.bin/webpack）：
-	npm5.2.0以上才能用npx  更新命令 sudo npm install npm@latest -g)
+			npm install --save-dev webpack
+			--如果装的是webpack4.0 需要再安装cli（npm i --save-dev webpack-cli ）
+   		git init > touch .gitignore > 创建远端仓库不要添加readme > 在本地 git remote add origin https://github.com/Panamer/webpack-restart.git >
+			git push -u origin master > 本地仓库分支关联远端分支成功 > git add . > git commit -m "" > git push > 工程创建成功
+ 			( Node 8.2+ 版本提供的 npx 命令，可以运行在初始安装的 webpack 包(package)的 webpack 二进制文件（./node_modules/.bin/webpack）：
+				npm5.2.0以上才能用npx  更新命令 sudo npm install npm@latest -g )
+			npm5 会自动添加 webpack-lock.json 文件
 3.
