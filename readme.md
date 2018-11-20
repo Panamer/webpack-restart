@@ -1,9 +1,10 @@
 概念：webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)
-	从 webpack v4.0.0 开始，可以不用引入一个配置文件。然而，webpack 仍然还是	高度可配置的。在开始前你需要先理解四个核心概念：
-	入口(entry)
-	输出(output)
-	loader
-	插件(plugins)
+	从 webpack v4.0.0 开始，可以不用引入一个配置文件。然而，webpack 仍然还是高度可配置的。
+	在开始前你需要先理解四个核心概念：
+					入口(entry)
+					输出(output)
+					loader
+					插件(plugins)
 
 1. 建立工程 mkdir webpack-project && cd webpack-project
 	    npm init -y 快速生成package.json
