@@ -11,4 +11,6 @@
 2. 安装（在工程里安装webpack 不要全局安装）
 	npm install --save-dev webpack
 	--如果装的是webpack4.0 需要再安装cli（npm i --save-dev webpack-cli ）
+   git init > touch .gitignore > 创建远端仓库不要添加readme > 在本地 git remote add origin https://github.com/Panamer/webpack-restart.git > git push -u origin master > 本地仓库分支关联远端分支成功 >
+git add . > git commit -m "" > git push > 工程创建成功
 3.
