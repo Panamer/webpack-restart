@@ -13,4 +13,6 @@
 	--如果装的是webpack4.0 需要再安装cli（npm i --save-dev webpack-cli ）
    git init > touch .gitignore > 创建远端仓库不要添加readme > 在本地 git remote add origin https://github.com/Panamer/webpack-restart.git > git push -u origin master > 本地仓库分支关联远端分支成功 >
 git add . > git commit -m "" > git push > 工程创建成功
+ ( Node 8.2+ 版本提供的 npx 命令，可以运行在初始安装的 webpack 包(package)的 webpack 二进制文件（./node_modules/.bin/webpack）：
+	npm5.2.0以上才能用npx  更新命令 sudo npm install npm@latest -g)
 3.
