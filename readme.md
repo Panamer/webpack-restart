@@ -16,4 +16,11 @@
  			( Node 8.2+ 版本提供的 npx 命令，可以运行在初始安装的 webpack 包(package)的 webpack 二进制文件（./node_modules/.bin/webpack）：
 				npm5.2.0以上才能用npx  更新命令 sudo npm install npm@latest -g )
 			npm5 会自动添加 webpack-lock.json 文件
-3. plugin： html-webpack-plugin   clean-webpack-plugin
+3. plugin：
+						.-html-webpack-plugin
+            .-clean-webpack-plugin
+						.使用 source map 开发环境帮助你找到报错的文件
+4. webpack 中有几个不同的选项，可以帮助你在代码发生变化后自动编译代码：
+						webpack's Watch Mode： 使用观察模式-watch 每次改动代码会自动编译 缺点是要刷新浏览器
+						webpack-dev-server
+						webpack-dev-middleware						
