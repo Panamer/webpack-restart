@@ -1,13 +1,13 @@
 {
   "name": "webpack20181120",
   "version": "1.0.0",
-  "description": "",
+  "description": "webpack 学习文档",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["webpack"],
+  "author": "guoyongwei",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^4.26.0"
