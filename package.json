@@ -4,7 +4,8 @@
   "description": "webpack 学习文档",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config build/webpack.config.js"
   },
   "keywords": [
     "webpack"
@@ -12,7 +13,8 @@
   "author": "guoyongwei",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^4.26.0"
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "lodash": "^4.17.11"
