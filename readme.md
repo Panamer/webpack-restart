@@ -19,8 +19,9 @@
 3. plugin：
 						.-html-webpack-plugin
             .-clean-webpack-plugin
-						.使用 source map 开发环境帮助你找到报错的文件
-4. webpack 中有几个不同的选项，可以帮助你在代码发生变化后自动编译代码：
+						.使用 source map 开发环境帮助你找到报错的文件 (仅用于开发环境)
+4. webpack 中有几个不同的选项，可以帮助你在代码发生变化后自动编译代码：(仅用于开发环境)
 						webpack's Watch Mode： 使用观察模式-watch 每次改动代码会自动编译 缺点是要刷新浏览器
-						webpack-dev-server
+						webpack-dev-server：   恰好弥补上面的缺点，为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)  
+																	 官网在package.json里配的main没有用，config还是要写在scripts里  --open会自动打开localhost：8080 端口
 						webpack-dev-middleware						
