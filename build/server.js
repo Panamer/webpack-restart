@@ -15,6 +15,8 @@ app.use(webpackDevMiddleware(compiler, {
     noInfo: true
 }))
 
+// config里加上plugin entry配置hotmiddle 这样可以实现热加载
+// 但是官方说可以在这里配置热加载的 configuration. 我会在下一个提交里试试
 app.use(webpackHotMiddleware(compiler))
 
 app.listen(port, () => {
