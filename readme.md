@@ -26,4 +26,5 @@
 																	 官网在package.json里配的main没有用，config还是要写在scripts里  --open会自动打开localhost：8080 端口
 						webpack-dev-middleware: 是一个容器(wrapper)，它可以把webpack处理后的文件传递给一个服务器(server)。
 																		webpack-dev-server 在内部使用了它，同时它也可以作为一个单独的包来使用
-						总结：webpack-dev-middleware 只能自动编译 不能自动刷新浏览器 那用dev-server再好不过了
+																		总结：webpack-dev-middleware 只能自动编译 不能自动刷新浏览器 那用dev-server再好不过了
+						Webpack Hot Middleware: 配合webpack-dev-middleware实现实时编译并刷新页面
