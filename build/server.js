@@ -16,8 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 
 // config里加上plugin entry配置hotmiddle 这样可以实现热加载
-// 但是官方说可以在这里配置热加载的 configuration. 我会在下一个提交里试试
-app.use(webpackHotMiddleware(compiler))
+app.use(webpackHotMiddleware(compiler, {
+    path: "__webpack_hmr",  // 这里是配置重新链接的，和entry里的配置不是一回事
+    heartbeat: 2000
+}))
 
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
