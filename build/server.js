@@ -17,7 +17,7 @@ app.use(webpackDevMiddleware(compiler, {
 
 // config里加上plugin entry配置hotmiddle 这样可以实现热加载
 app.use(webpackHotMiddleware(compiler, {
-    path: "__webpack_hmr",  // 这里是配置重新链接的，和entry里的配置不是一回事
+    path: "/__webpack_hmr",  // 这里是配置重新链接的，和entry里的配置不是一回事
     heartbeat: 2000
 }))
 
