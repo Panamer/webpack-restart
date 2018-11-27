@@ -5,12 +5,15 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config build/webpack.config.js --colors --mode production --progress --hide-modules",
+    "build": "webpack --config build/webpack.config.js --colors --mode production --progress --hide-modules --optimize-minimize",
     "watch": "webpack --config build/webpack.config.js --colors --watch",
     "dev": "webpack-dev-server --config build/webpack.config.js --progress --open"
   },
   "keywords": [
     "webpack"
+  ],
+  "sideEffects": [
+    "*.css"
   ],
   "author": "guoyongwei",
   "license": "ISC",
