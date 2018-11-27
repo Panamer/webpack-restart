@@ -28,3 +28,4 @@
 																		webpack-dev-server 在内部使用了它，同时它也可以作为一个单独的包来使用
 																		总结：webpack-dev-middleware 只能自动编译 不能自动刷新浏览器 那用dev-server再好不过了
 						Webpack Hot Middleware: 配合webpack-dev-middleware实现实时编译并刷新页面
+5. 模块热替换（HMR）：效果上就是界面的无刷新更新 					
