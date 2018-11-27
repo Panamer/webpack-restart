@@ -25,3 +25,4 @@
 						webpack-dev-server：   恰好弥补上面的缺点，为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)  
 																	 官网在package.json里配的main没有用，config还是要写在scripts里  --open会自动打开localhost：8080 端口
 						webpack-dev-middleware						
+6. 在webpack-dev-server的基础上配置HMR，需要在webpack-config.js 里添加hot：true，在index.js里 if(Module.Hot),但是借助（css，style）loader可以简单的实现css无感刷新
