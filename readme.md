@@ -26,3 +26,7 @@
 																	 官网在package.json里配的main没有用，config还是要写在scripts里  --open会自动打开localhost：8080 端口
 						webpack-dev-middleware						
 6. 在webpack-dev-server的基础上配置HMR，需要在webpack-config.js 里添加hot：true，在index.js里 if(Module.Hot),但是借助（css，style）loader可以简单的实现css无感刷新
+7. 	webpack打包和webpack-dev-server开启服务的区别——
+		webpack输出真实的文件，而webpack-dev-server输出的文件只存在于内存中,不输出真实的文件！
+8. webpack-dev-server --hot --open目的是开启一个本地服务，--hot为热加载，可实视查看页面状态，--open直接从浏览器打开
+		webpack --mode production --progress --hide-modules是打包整个项目的指令，--mode production是以生产模式打包，这样会得到体积更小的文件，有兴趣的同学可以试试不加这个指令，看看差距到底有多大。--progress打印出编译进度的百分比值，hide-modules隐藏关于模块的信息

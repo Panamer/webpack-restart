@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config build/webpack.config.js --colors",
+    "build": "webpack --config build/webpack.config.js --colors --mode production --progress --hide-modules",
     "watch": "webpack --config build/webpack.config.js --colors --watch",
-    "dev": "webpack-dev-server --config build/webpack.config.js --open"
+    "dev": "webpack-dev-server --config build/webpack.config.js --progress --hide-modules --open"
   },
   "keywords": [
     "webpack"
