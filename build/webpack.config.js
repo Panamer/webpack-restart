@@ -7,6 +7,7 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   devServer:{
+    stats: "verbose",
     contentBase: '../dist'                    // 以上配置告知 webpack-dev-server，在 localhost:8080 下建立服务，将 dist 目录下的文件，作为可访问文件
   },
   plugins: [
