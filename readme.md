@@ -6,7 +6,6 @@
 					输出(output)
 					loader
 					插件(plugins)
-
 1. 建立工程 mkdir webpack-project && cd webpack-project
 	    npm init -y 快速生成package.json
 2. 安装（在工程里安装webpack 不要全局安装）
@@ -34,6 +33,5 @@
 				webpack --mode production --progress --hide-modules是打包整个项目的指令，--mode production是以生产模式打包，这样会得到体积更小的文件，
 				有兴趣的同学可以试试不加这个指令，看看差距到底有多大。--progress打印出编译进度的百分比值，hide-modules隐藏关于模块的信息
 				--hide-modules只有build的时候可以用 在dev执行webpack-dev-server的时候无效
-
 
 ```
