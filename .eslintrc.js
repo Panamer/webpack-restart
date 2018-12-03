@@ -12,6 +12,7 @@ module.exports = {
   env: {
     // 预定义的全局变量，这里是浏览器环境
     browser: true,
+    node: true
   },
   // 扩展一个流行的风格指南，即 eslint-config-standard
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
