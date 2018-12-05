@@ -7,7 +7,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/main.js',
     plugins: [
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../'), // 这个地方是../ 不是../dist  和output.path保持一致
@@ -27,7 +27,7 @@ module.exports = {
                 test: /\.(js|vue)$/,
                 loader: 'eslint-loader',
                 enforce: 'pre',
-                include: [resolve('src'), resolve('test')],
+                exclude: /node_modules/,
                 options: {
                     formatter: require('eslint-friendly-formatter')
                     // 不符合Eslint规则时只警告(默认运行出错)
@@ -36,17 +36,13 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                use: [{
-                    loader: 'babel-loader',
-                    include: [resolve('src'), resolve('test')]
-                }]
+                use: 'babel-loader',
+                include: [resolve('src'), resolve('test')]
             },
             {
                 test: /\.vue$/,
-                use: [{
-                    loader: 'vue-loader',
-                    include: [resolve('src'), resolve('test')]
-                }]
+                use: 'vue-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
