@@ -36,3 +36,4 @@
 9. 在module的rules中加入eslint-loader 控制台可以看到eslint报错
 
 ```
+
