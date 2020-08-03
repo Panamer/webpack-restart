@@ -2,3 +2,6 @@
   color: red;
   /* background: url('./icon.jpg') no-repeat; */
 }
+.box {
+  display: flex;
+}

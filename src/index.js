@@ -1,6 +1,7 @@
-// import _ from 'lodash';
-// import style from './style.css'
-// import Icon from './icon.jpg'
+import _ from 'lodash';
+import style from './style.css'
+import Icon from './icon.jpg'
+import c from './we.jpeg'
 
 function component() {
   var element = document.createElement('div');
@@ -10,10 +11,12 @@ function component() {
   element.classList.add('hello')
   // 将图片添加到div里
   const image = new Image()
-  image.src = Icon
+  image.src = c || Icon
   element.appendChild(image);
-
   return element;
 }
 
 document.body.appendChild(component());
+
+
+
