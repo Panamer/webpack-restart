@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import style from './style.css'
-import Icon from './icon.jpg'
+// import _ from 'lodash';
+// import style from './style.css'
+// import Icon from './icon.jpg'
 
 function component() {
   var element = document.createElement('div');
