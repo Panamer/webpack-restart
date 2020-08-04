@@ -45,7 +45,7 @@ const config = {
       },
       // file-loader 的作用是把静态资源模块移动到输出目录  url-loader是file-loader的加强版 把jpg处理为base64
       {
-        test: /\.(png|jpe?g|jpg|gif)$/,
+        test: /\.(png|jpe?g|gif)$/,
         use: {
           loader: "url-loader",
           options: {
@@ -67,7 +67,11 @@ const config = {
       title: "webpack hello", // index.html中 要做插入才生效
       template: './src/index.html'
     })
-  ]
+  ],
+  // 如果自定义了loader 告诉wp先到node_modules找loader,找不到再去 myLoaders文件夹
+  resolveLoader: {
+    modules: ["./node_modules", "./myLoaders"]
+  }
 }
 
 // commonJS 只支持这样写
