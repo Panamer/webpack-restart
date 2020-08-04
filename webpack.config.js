@@ -6,6 +6,7 @@
  */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
@@ -16,7 +17,7 @@ const config = {
   // entry属性 指示wp应该使用哪个模块 作为依赖构建的入口. entry可以是一个或者多个 默认值 './src'
   entry: {
     // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
-    detail: './src/index.js'
+    main: './src/index.js'
   },
   // entry: "./src/index.js",
 
@@ -41,7 +42,17 @@ const config = {
         test: /\.css$/,
         // 标示进行转换时 应该用哪个loader  loader的执行顺序是从右往左
         // "postcss-loader" 添加浏览器兼容前缀
-        use: ['style-loader', 'css-loader', "postcss-loader"]
+        use: [
+          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
+          },
+          'css-loader',
+          "postcss-loader"
+        ]
       },
       // file-loader 的作用是把静态资源模块移动到输出目录  url-loader是file-loader的加强版 把jpg处理为base64
       {
@@ -66,13 +77,28 @@ const config = {
     new HtmlWebpackPlugin({
       title: "webpack hello", // index.html中 要做插入才生效
       template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css'
     })
   ],
   // 如果自定义了loader 告诉wp先到node_modules找loader,找不到再去 myLoaders文件夹
   resolveLoader: {
-    modules: ["./node_modules", "./myLoaders"]
+    modules: [
+      "./node_modules",
+      path.resolve(__dirname, 'myLoaders')
+    ]
   }
 }
 
 // commonJS 只支持这样写
 module.exports = config;
+
+/* 
+hash、thunkhash、contenthash 的区别
+hash:           每次构建过程中,唯一的hash生成,只有当文件有修改的时候 hash才会变   output 标识符             任何一个依赖变化 都变化
+thunkhash:      基于每个thunk内容的hash, 一个thunk中可能会引入多个文件, 任何一个文件被修改 thunkhash都会变  只有当前模块的依赖改变了 才变 适用于单独打包库
+contenthash:    基于文件内容的hash   只要当前文件修改了 contenthash才会变           file-loader标识符 只要当前css改变才变
+最佳实践: js推荐使用thunkhash  css使用contenthash       
+
+*/

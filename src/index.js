@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import style from './style.css'
-import Icon from './icon.jpg'
-import c from './we.jpeg'
+import style from './css/style.css'
+import Icon from './images/icon.jpg'
+import c from './images/we.jpeg'
 
 function component() {
   var element = document.createElement('div');
