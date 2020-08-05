@@ -11,7 +11,7 @@ function component() {
   element.classList.add('hello')
   // 将图片添加到div里
   const image = new Image()
-  image.src = c && Icon
+  image.src = c || Icon
   element.appendChild(image);
   return element;
 }

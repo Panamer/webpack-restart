@@ -44,12 +44,12 @@ const config = {
         // "postcss-loader" 添加浏览器兼容前缀
         use: [
           'style-loader',
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: ''
-            }
-          },
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {
+          //     publicPath: ''
+          //   }
+          // },
           'css-loader',
           "postcss-loader"
         ]
@@ -72,15 +72,16 @@ const config = {
   // 插件目的在于解决 loader 无法实现的其他事
   // webpack 插件是一个具有 apply 属性的 JavaScript 对象
   plugins: [
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
     new HtmlWebpackPlugin({
       title: "webpack hello", // index.html中 要做插入才生效
       template: './src/index.html'
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css'
-    })
+    // new MiniCssExtractPlugin({
+    //   filename: 'css/[name].[contenthash].css'
+    // })
   ],
   // 如果自定义了loader 告诉wp先到node_modules找loader,找不到再去 myLoaders文件夹
   resolveLoader: {
@@ -88,17 +89,38 @@ const config = {
       "./node_modules",
       path.resolve(__dirname, 'myLoaders')
     ]
+  },
+  devServer: {
+    before: function (app, server, compiler) {
+      app.get('/some/path', function (req, res) {
+        res.json({ custom: 'response' });
+      });
+    },
+    open: true,
+    openPage: 'different/page', // 可以配置一个默认路由
+    hot: true,
+    hotOnly:true,
+    port: 8090
   }
 }
 
 // commonJS 只支持这样写
 module.exports = config;
 
-/* 
+/*
 hash、thunkhash、contenthash 的区别
 hash:           每次构建过程中,唯一的hash生成,只有当文件有修改的时候 hash才会变   output 标识符             任何一个依赖变化 都变化
 thunkhash:      基于每个thunk内容的hash, 一个thunk中可能会引入多个文件, 任何一个文件被修改 thunkhash都会变  只有当前模块的依赖改变了 才变 适用于单独打包库
 contenthash:    基于文件内容的hash   只要当前文件修改了 contenthash才会变           file-loader标识符 只要当前css改变才变
-最佳实践: js推荐使用thunkhash  css使用contenthash       
+最佳实践: js推荐使用thunkhash  css使用contenthash
+
+
+
+
+只装webpack-dev-server 修改代码浏览器自动刷新 包括修改样式
+添加devServer 配置hot 发现修改样式 页面不刷新  字体颜色也不变
+原因: 热模块替换 不能抽离css 去掉loader 热更新生效
+但是: 修改js 页面无更新, 因为js要做特殊处理  
+
 
 */
