@@ -9,24 +9,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
-
+const {entry, htmlWebpackPlugins}  = require('./build/mpa.js') 
 
 const config = {
   // 提供mode配置选项, 告知wp使用响应模式的内置优化
   mode: 'development',
   devtool: '#cheap-module-eval-source-map',
   // entry属性 指示wp应该使用哪个模块 作为依赖构建的入口. entry可以是一个或者多个 默认值 './src'
-  entry: {
-    // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
-    main: './src/index.js'
-  },
+  // entry: {
+  //   // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
+  //   main: './src/index.js'
+  // },
   // entry: "./src/index.js",
-
+  entry: entry,
 
   // output属性 告诉wp在哪里输出它创建的bundles 以及如何命名这些文件
   output: {
     // 用于输出文件的文件名  动态   chunkhash和hash占位符不能同时使用---[name].[id].[hash].js
-    filename: '[name].[hash].js',
+    filename: 'js/[name].[hash].js',
     // 目标输出目录 ⚠️  绝对路径
     path: path.resolve(process.cwd(), 'dist'),
     // cdn地址
@@ -76,13 +76,14 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
-    new HtmlWebpackPlugin({
-      title: "webpack hello", // index.html中 要做插入才生效
-      template: './src/index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: "webpack hello", // index.html中 要做插入才生效
+    //   template: './src/index.html'
+    // }),
     // new MiniCssExtractPlugin({
     //   filename: 'css/[name].[contenthash].css'
     // })
+    ...htmlWebpackPlugins
   ],
   // 如果自定义了loader 告诉wp先到node_modules找loader,找不到再去 myLoaders文件夹
   resolveLoader: {
