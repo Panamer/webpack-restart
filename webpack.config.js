@@ -14,6 +14,7 @@ const path = require('path');
 const config = {
   // 提供mode配置选项, 告知wp使用响应模式的内置优化
   mode: 'development',
+  devtool: '#cheap-module-eval-source-map',
   // entry属性 指示wp应该使用哪个模块 作为依赖构建的入口. entry可以是一个或者多个 默认值 './src'
   entry: {
     // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
@@ -72,7 +73,7 @@ const config = {
   // 插件目的在于解决 loader 无法实现的其他事
   // webpack 插件是一个具有 apply 属性的 JavaScript 对象
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
     new HtmlWebpackPlugin({
@@ -98,11 +99,12 @@ const config = {
     },
     open: true,
     openPage: 'different/page', // 可以配置一个默认路由
-    hot: true,
+    hot: true,  // 启用 webpack 的模块热替换特性。DevServer默认的行为是在发现源代码被更新后会通过自动刷新整个页面来做到实现预览
     hotOnly:true,
     port: 8090
   }
 }
+
 
 // commonJS 只支持这样写
 module.exports = config;
@@ -120,7 +122,7 @@ contenthash:    基于文件内容的hash   只要当前文件修改了 contenth
 只装webpack-dev-server 修改代码浏览器自动刷新 包括修改样式
 添加devServer 配置hot 发现修改样式 页面不刷新  字体颜色也不变
 原因: 热模块替换 不能抽离css 去掉loader 热更新生效
-但是: 修改js 页面无更新, 因为js要做特殊处理  
-
+但是: 修改js 页面无更新, 因为js要做特殊处理 : 添加HotModuleReplacementPlugin 入口增加 if (module.hot)
+这样js改变  页面就会热替换
 
 */
