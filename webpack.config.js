@@ -20,8 +20,8 @@ const config = {
   //   // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
   //   main: './src/index.js'
   // },
-  // entry: "./src/index.js",
-  entry: entry,
+  entry: "./src/index.js",
+  // entry: entry,
 
   // output属性 告诉wp在哪里输出它创建的bundles 以及如何命名这些文件
   output: {
@@ -76,14 +76,14 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
-    // new HtmlWebpackPlugin({
-    //   title: "webpack hello", // index.html中 要做插入才生效
-    //   template: './src/index.html'
-    // }),
-    // new MiniCssExtractPlugin({
-    //   filename: 'css/[name].[contenthash].css'
-    // })
-    ...htmlWebpackPlugins
+    new HtmlWebpackPlugin({
+      title: "webpack hello", // index.html中 要做插入才生效
+      template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css'
+    })
+    // ...htmlWebpackPlugins
   ],
   // 如果自定义了loader 告诉wp先到node_modules找loader,找不到再去 myLoaders文件夹
   resolveLoader: {
@@ -95,14 +95,25 @@ const config = {
   devServer: {
     before: function (app, server, compiler) {
       app.get('/some/path', function (req, res) {
-        res.json({ custom: 'response' });
+        res.json({ custom: 'response: 你真棒' });
       });
     },
     open: true,
-    openPage: 'different/page', // 可以配置一个默认路由
+    openPage: 'some/path', // 可以配置一个默认路由
     hot: true,  // 启用 webpack 的模块热替换特性。DevServer默认的行为是在发现源代码被更新后会通过自动刷新整个页面来做到实现预览
     hotOnly:true,
-    port: 8090
+    port: 8090,
+    clientLogLevel: "error",   // none, error, warning 或者 info（默认值
+    noInfo: false, // 不建议开启
+    // stats: "errors-only",
+    proxy: {
+      '/gome': {
+        target: "http://localhost:8090",
+        pathRewrite: {"^/gome" : ""}
+      }
+      //  http://localhost:8090/gome/some/path 代理成功 这地址有返回值
+      // 代理也可以配置多个
+    }
   }
 }
 
