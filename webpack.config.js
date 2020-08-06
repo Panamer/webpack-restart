@@ -103,7 +103,7 @@ const config = {
     hot: true,  // 启用 webpack 的模块热替换特性。DevServer默认的行为是在发现源代码被更新后会通过自动刷新整个页面来做到实现预览
     hotOnly:true,
     port: 8090,
-    clientLogLevel: "error",   // none, error, warning 或者 info（默认值
+    clientLogLevel: "info",   // none, error, warning 或者 info（默认值) 控制台能看到的信息
     noInfo: false, // 不建议开启
     // stats: "errors-only",
     proxy: {

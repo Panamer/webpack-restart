@@ -1,1 +1,1 @@
-export const contant = '大炮'
+export const contant = 'WEY炮'
