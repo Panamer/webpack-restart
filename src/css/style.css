@@ -1,5 +1,8 @@
 .hello {
-  color: red;
+  color: rgb(33, 146, 190);
   /* background: url('./icon.jpg') no-repeat; */
   /* 现在可以实现样式无感刷新   */
+}
+.box {
+  display: flex;
 }
