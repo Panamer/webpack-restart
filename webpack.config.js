@@ -10,7 +10,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const {entry, htmlWebpackPlugins}  = require('./build/mpa.js') 
+const textWebpackPlugin = require('./myPlugins/text-webpack-plugin.js')
 
+
+console.log(textWebpackPlugin);
 const config = {
   // 提供mode配置选项, 告知wp使用响应模式的内置优化
   mode: 'development',
@@ -73,6 +76,9 @@ const config = {
   // 插件目的在于解决 loader 无法实现的其他事
   // webpack 插件是一个具有 apply 属性的 JavaScript 对象
   plugins: [
+    new textWebpackPlugin({
+      name: "good plugin "
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
