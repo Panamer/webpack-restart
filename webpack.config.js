@@ -9,12 +9,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
-const {entry, htmlWebpackPlugins}  = require('./build/mpa.js') 
+const { entry, htmlWebpackPlugins } = require('./build/mpa.js')
+const textWebpackPlugin = require('./myPlugins/text-webpack-plugin.js')
 
+
+console.log(textWebpackPlugin);
 const config = {
   // 提供mode配置选项, 告知wp使用响应模式的内置优化
   mode: 'development',
-  devtool: '#cheap-module-eval-source-map',
+  // devtool: '#cheap-module-eval-source-map',
   // entry属性 指示wp应该使用哪个模块 作为依赖构建的入口. entry可以是一个或者多个 默认值 './src'
   // entry: {
   //   // index: ['./src/index.js', './src/about.js'],  // 正常是不会这么写的  但发现这样配也可以 会把多个thunk打包到一个bundle文件里
@@ -53,11 +56,13 @@ const config = {
           // },
           'css-loader',
           "postcss-loader"
-        ]
+        ],
+        include: path.resolve(__dirname, './src/css')
       },
       // file-loader 的作用是把静态资源模块移动到输出目录  url-loader是file-loader的加强版 把jpg处理为base64
       {
         test: /\.(png|jpe?g|gif)$/,
+        include: path.resolve(__dirname, './src/images'),
         use: {
           loader: "url-loader",
           options: {
@@ -73,6 +78,9 @@ const config = {
   // 插件目的在于解决 loader 无法实现的其他事
   // webpack 插件是一个具有 apply 属性的 JavaScript 对象
   plugins: [
+    new textWebpackPlugin({
+      name: "good plugin "
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin('dist'), // 坑 按最新的配没效果  老的写法是把dist传进去
@@ -92,6 +100,14 @@ const config = {
       path.resolve(__dirname, 'myLoaders')
     ]
   },
+  resolve: {
+    alias: {
+      // 起别名
+      '@': path.resolve(__dirname, './src')
+    },
+    // 导入模块后缀名称  不推荐使用  推荐引入模块都添加后缀
+    extensions: ['.js', '.json']
+  },
   devServer: {
     before: function (app, server, compiler) {
       app.get('/some/path', function (req, res) {
@@ -101,7 +117,7 @@ const config = {
     open: true,
     openPage: 'some/path', // 可以配置一个默认路由
     hot: true,  // 启用 webpack 的模块热替换特性。DevServer默认的行为是在发现源代码被更新后会通过自动刷新整个页面来做到实现预览
-    hotOnly:true,
+    hotOnly: true,
     port: 8090,
     clientLogLevel: "info",   // none, error, warning 或者 info（默认值) 控制台能看到的信息
     noInfo: false, // 不建议开启
@@ -109,11 +125,14 @@ const config = {
     proxy: {
       '/gome': {
         target: "http://localhost:8090",
-        pathRewrite: {"^/gome" : ""}
+        pathRewrite: { "^/gome": "" }
       }
       //  http://localhost:8090/gome/some/path 代理成功 这地址有返回值
       // 代理也可以配置多个
     }
+  },
+  optimization: {
+    usedExports: true
   }
 }
 
@@ -136,5 +155,18 @@ contenthash:    基于文件内容的hash   只要当前文件修改了 contenth
 原因: 热模块替换 不能抽离css 去掉loader 热更新生效
 但是: 修改js 页面无更新, 因为js要做特殊处理 : 添加HotModuleReplacementPlugin 入口增加 if (module.hot)
 这样js改变  页面就会热替换
+
+
+
+
+
+webpack优化：
+  babel按需加载
+  include、exclude
+  resolve alias 配置别名
+  引入模块推荐带上后缀  查询快 可读性好
+  js  tree-shaking 只支持 es module 引入方式    usedExports
+  css  tree-shaking 要求 只作用于提取后的css  https://www.npmjs.com/package/purifycss-webpack
+  官方推荐结合extract-text-webpack-plugin使用
 
 */
